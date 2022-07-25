@@ -1,6 +1,6 @@
 <?php
 
-use app\components\Mago;
+use app\Mago;
 use yii\web\Application;
 
 class Yii

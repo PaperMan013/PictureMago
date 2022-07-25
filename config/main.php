@@ -1,5 +1,7 @@
 <?php
 
+use app\User;
+
 $mago = require 'mago.php';
 $mago_local = require 'mago_local.php' ?? [];
 
@@ -15,7 +17,7 @@ return [
             'enableCookieValidation' => false
         ],
         'user' => [
-            'identityClass' => '\app\models\User',
+            'identityClass' => User::class,
             'enableSession' => false,
         ],
         'urlManager' => [

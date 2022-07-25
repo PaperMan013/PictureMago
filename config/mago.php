@@ -1,18 +1,30 @@
 <?php
 
+use app\Mago;
+use app\processors\Resize;
+
 return [
-    'class' => '\app\components\Mago',
-    'rules' => [
-        '\app\rules\Original',
+    'class' => Mago::class,
+    'processors' => [
         [
-            'class' => '\app\rules\Scale',
-            'name' => 'preview',
+            'class' => Resize::class,
+            'id' => 'side500',
+            'maxSide' => 500,
+        ],
+        [
+            'class' => Resize::class,
+            'id' => 'width500',
             'maxWidth' => 500,
+        ],
+        [
+            'class' => Resize::class,
+            'id' => 'height500',
             'maxHeight' => 500,
-        ]
+        ],
     ],
     'versions' => [
-        'original',
-        'preview' => 'original'
+        's1' => 'side500',
+        's2' => 'width500',
+        's3' => 'height500',
     ],
 ];

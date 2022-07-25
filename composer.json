@@ -1,26 +1,29 @@
 {
-    "name": "paperman/picture_mago",
-    "description": "Picture holding microservice",
-    "type": "project",
-    "require": {
-        "yiisoft/yii2": "~2.0.0"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        }
-    ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Alexey Kozlov",
-            "email": "a.kozlov@hpbc.ru"
-        }
-    ],
-    "config": {
-        "allow-plugins": {
-            "yiisoft/yii2-composer": true
-        }
+  "name": "paperman/picture_mago",
+  "description": "Picture holding microservice",
+  "type": "project",
+  "require": {
+    "yiisoft/yii2": "~2.0.0",
+    "imagine/imagine": "~0.5.0",
+    "ext-gd": "*",
+    "ext-exif": "*"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
     }
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexey Kozlov",
+      "email": "a.kozlov@hpbc.ru"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  }
 }
