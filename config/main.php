@@ -2,8 +2,7 @@
 
 use app\User;
 
-$mago = require 'mago.php';
-$mago_local = require 'mago_local.php' ?? [];
+$mago = file_exists('mago_local.php') ? require 'mago_local.php' : [];
 
 return [
     'id' => 'picture-mago',
@@ -29,6 +28,6 @@ return [
                 'DELETE /<filename>' => '/default/delete',
             ],
         ],
-        'mago' => array_merge($mago, $mago_local),
+        'mago' => $mago,
     ],
 ];
