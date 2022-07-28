@@ -1,8 +1,7 @@
 <?php
 
+use app\Mago;
 use app\User;
-
-$mago = file_exists('mago_local.php') ? require 'mago_local.php' : [];
 
 return [
     'id' => 'picture-mago',
@@ -28,6 +27,8 @@ return [
                 'DELETE /<filename>' => '/default/delete',
             ],
         ],
-        'mago' => $mago,
+        'mago' => [
+            'class' => Mago::class,
+        ],
     ],
 ];
