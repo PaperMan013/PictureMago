@@ -12,7 +12,9 @@ return [
     ],
     'components' => [
         'request' => [
-            'enableCookieValidation' => false
+            'enableCookieValidation' => false,
+            'enableCsrfCookie' => false,
+            'enableCsrfValidation' => false,
         ],
         'user' => [
             'identityClass' => User::class,
@@ -22,6 +24,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'DELETE /flush' => '/default/flush',
                 'GET /<version>/<filename>' => '/default/index',
                 'POST /<filename>' => '/default/save',
                 'DELETE /<filename>' => '/default/delete',
