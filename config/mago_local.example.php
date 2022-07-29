@@ -1,6 +1,7 @@
 <?php
 
 use app\processors\Resize;
+use app\processors\Square;
 
 return [
     'components' => [
@@ -12,9 +13,13 @@ return [
                     'id' => 'side500',
                     'maxSide' => 500,
                 ],
+                [
+                    'class' => Square::class,
+                    'id' => 'square'
+                ],
             ],
             'versions' => [
-                'preview' => ['side500'],
+                'preview' => ['side500', 'square'],
             ],
         ]
     ]
