@@ -6,6 +6,7 @@ use app\processors\Processor;
 use Yii;
 use yii\base\Exception;
 use yii\filters\auth\HttpBearerAuth;
+use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
@@ -22,7 +23,16 @@ class DefaultController extends \yii\rest\Controller
         return [
             'bearerAuth' => [
                 'class' => HttpBearerAuth::class,
-                'except' => ['index']
+                'except' => (YII_DEBUG ?? false) === true? ['*'] : ['index'],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'index'  => ['GET'],
+                    'save'   => ['POST'],
+                    'delete' => ['DELETE'],
+                    'flush' => ['DELETE'],
+                ],
             ],
         ];
     }
@@ -103,5 +113,43 @@ class DefaultController extends \yii\rest\Controller
         }
 
         return 1;
+    }
+
+    /**
+     * Удаляет все созданные версии изображений
+     * @return int
+     */
+    public function actionFlush(): int
+    {
+        foreach (Yii::$app->mago->versions as $version => $processors) {
+            $this->rmDir(Yii::getAlias('@webroot') . "/{$version}");
+        }
+
+        return 1;
+    }
+
+    /**
+     * Удаляет папку вместе с содержимым
+     * @param string $dir
+     */
+    private function rmDir(string $dir)
+    {
+        if (file_exists($dir)) {
+            foreach (scandir($dir) as $item) {
+                if (in_array($item, ['.', '..'])) {
+                    continue;
+                }
+
+                $path = "{$dir}/{$item}";
+
+                if (is_dir($path)) {
+                    $this->rmDir($path);
+                } else {
+                    unlink($path);
+                }
+            }
+
+            rmdir($dir);
+        }
     }
 }

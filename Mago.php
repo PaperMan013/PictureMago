@@ -114,10 +114,12 @@ class Mago extends \yii\base\Component
 
     private static function save(string $version, string $filename, ImageInterface $image)
     {
-        if (!file_exists(Yii::getAlias('@webroot') . '/' . $version)) {
-            mkdir(Yii::getAlias('@webroot') . '/' . $version);
+        $dir = Yii::getAlias('@webroot') . '/' . $version;
+
+        if (!file_exists($dir)) {
+            mkdir($dir);
         }
 
-        $image->save(Yii::getAlias('@webroot') . '/' . $version . '/' . $filename);
+        $image->save("{$dir}/{$filename}", ['jpeg_quality' => 95, 'webp_quality' => 95]);
     }
 }
