@@ -1,19 +1,26 @@
 <?php
 
-use app\Mago;
 use app\processors\Resize;
+use app\processors\Square;
 
 return [
-    'class' => Mago::class,
-    'token' => 'secret',
-    'processors' => [
-        [
-            'class' => Resize::class,
-            'id' => 'side500',
-            'maxSide' => 500,
-        ],
-    ],
-    'versions' => [
-        'preview' => ['side500'],
-    ],
+    'components' => [
+        'mago' => [
+            'token' => 'secret',
+            'processors' => [
+                [
+                    'class' => Resize::class,
+                    'id' => 'side500',
+                    'maxSide' => 500,
+                ],
+                [
+                    'class' => Square::class,
+                    'id' => 'square'
+                ],
+            ],
+            'versions' => [
+                'preview' => ['side500', 'square'],
+            ],
+        ]
+    ]
 ];
