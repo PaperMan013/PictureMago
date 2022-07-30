@@ -77,22 +77,18 @@ class Mago extends \yii\base\Component
      */
     private static function getProcessorsIds(string $version): array
     {
-        if (isset(Yii::$app->mago->versions[$version])) {
-            $ids = Yii::$app->mago->versions[$version];
-            switch (gettype($ids)) {
-                case 'array':
-                    return $ids;
-                case 'string':
-                    return [$ids];
-                default:
-                    throw new HttpException(
-                        500,
-                        'Список идентификаторов обработчиков должен быть строкой или массивом строк'
-                    );
-            }
+        $ids = Yii::$app->mago->versions[$version];
+        switch (gettype($ids)) {
+            case 'array':
+                return $ids;
+            case 'string':
+                return [$ids];
+            default:
+                throw new HttpException(
+                    500,
+                    'Список идентификаторов обработчиков должен быть строкой или массивом строк'
+                );
         }
-
-        throw new HttpException(500, "Версия {$version} не найдена");
     }
 
     /**

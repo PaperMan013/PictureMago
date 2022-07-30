@@ -7,6 +7,7 @@ return [
     'id' => 'picture-mago',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'app\controllers',
+    'defaultRoute' => null,
     'aliases' => [
         '@app' => dirname(__DIR__),
     ],
@@ -24,10 +25,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'DELETE /flush' => '/default/flush',
-                'GET /<version>/<filename>' => '/default/index',
-                'POST /<filename>' => '/default/save',
-                'DELETE /<filename>' => '/default/delete',
+                '/site/index' => '/site/not-found',
+                'POST /<action>' => '/site/<action>',
+                'GET /<version>/<filename>' => '/site/index',
             ],
         ],
         'mago' => [
