@@ -17,9 +17,6 @@ class Mago extends \yii\base\Component
     /** @var string Имя папки для хранения оригиналов */
     public $originalVersion = 'original';
 
-    /** @var string Наименование элемента формы для отправки файла изображения */
-    public $inputName = 'image';
-
     /** @var string Секретный ключ для добавления и удаления изображений */
     public $token = 'secret';
 

@@ -19,7 +19,13 @@ class AddForm extends Model
     public function rules()
     {
         return [
-            ['image', 'image', 'skipOnEmpty' => false, 'extensions' => ['jpg', 'png', 'gif', 'webp']],
+            [
+                'image',
+                'image',
+                'skipOnEmpty' => false,
+                'extensions' => ['jpg', 'png', 'gif', 'webp'],
+                'checkExtensionByMimeType' => false,
+            ],
             ['replace', 'boolean']
         ];
     }
