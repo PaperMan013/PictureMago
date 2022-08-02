@@ -24,6 +24,8 @@ class DeleteForm extends \yii\base\Model
     {
         parent::init();
 
+	$this->load(Yii::$app->request->post(), '');
+
         if (!$this->validate()) {
             throw new BadRequestHttpException(implode('; ', $this->getErrorSummary(true)));
         }
@@ -36,7 +38,7 @@ class DeleteForm extends \yii\base\Model
     public function delete(): int
     {
         if (!file_exists(Yii::getAlias('@webroot') . '/' . Yii::$app->mago->originalVersion . "/{$this->filename}")) {
-            throw new NotFoundHttpException();
+            throw new NotFoundHttpException("Файл {$this->filename} не найден");
         }
 
         foreach (Yii::$app->mago->versions as $version => $processors) {

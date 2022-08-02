@@ -3,9 +3,11 @@
 use app\Mago;
 use app\User;
 use yii\log\FileTarget;
+use yii\web\Response;
 
 return [
     'id' => 'picture-mago',
+    'language' => 'ru',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'app\controllers',
     'defaultRoute' => null,
@@ -18,6 +20,9 @@ return [
             'enableCookieValidation' => false,
             'enableCsrfCookie' => false,
             'enableCsrfValidation' => false,
+        ],
+        'response' => [
+            'format' => Response::FORMAT_JSON,
         ],
         'user' => [
             'identityClass' => User::class,

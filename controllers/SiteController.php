@@ -74,7 +74,7 @@ class SiteController extends \yii\rest\Controller
      * @return int
      * @throws BadRequestHttpException
      */
-    public function actionAdd(): int
+    public function actionAdd()
     {
         return (new AddForm())->add();
     }
@@ -85,7 +85,7 @@ class SiteController extends \yii\rest\Controller
      * @return int
      * @throws NotFoundHttpException
      */
-    public function actionDelete(string $filename): int
+    public function actionDelete(): int
     {
         return (new DeleteForm())->delete();
     }
