@@ -36,6 +36,15 @@ class SiteController extends \yii\rest\Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        Yii::info(
+            print_r(Yii::$app->request->headers->toArray(), 1) . PHP_EOL . print_r(Yii::$app->request->post(), 1),
+            'Http request'
+        );
+        return parent::beforeAction($action);
+    }
+
     /**
      * Создаёт версию изображения
      * @param string $version
